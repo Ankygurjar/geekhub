@@ -2,15 +2,22 @@ import React from 'react';
 import styledComponents from 'styled-components';
 import { Link } from 'react-router-dom';
 import DropdownMenu from './services.geekhub.js';
+import ChangeAppearance from './ChangeAppearance.geekhub';
 
-function MenuItems({ title, showServices }) {
+function MenuItems({ title, showServices, changeAppearance }) {
 
     return (
         <MenuItemsContainer>
-            <Link to="/">{title}</Link>
+            {title &&
+                <Link to="/">{title}</Link>
+            }
 
             {showServices &&
                 <DropdownMenu />
+            }
+
+            {changeAppearance &&
+                <ChangeAppearance />
             }
 
         </MenuItemsContainer>
