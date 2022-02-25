@@ -9,6 +9,7 @@ function PublicHeader() {
                 <MenuItems showServices={true} />
                 <MenuItems title="Contact Us" showServices={false} />
                 <MenuItems title="Blog" showServices={false} />
+                <MenuItems changeAppearance={true} />
             </MenuWrapper>
 
         </Container>
@@ -22,15 +23,15 @@ const Container = styledComponents.div`
     width: 100%;
     padding: 10px;
     background-color: #F0F0F0;
+    color: #4183c4;
 `
 const MenuWrapper = styledComponents.div`
     width:80%;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(3, 80px);
-    grid-auto-columns: 75px;
+    grid-template-columns: repeat(4, 80px);
     grid-auto-flow: column;
-
+    align-items: center;
     font-size: 15px;
     font-weight: bold;
 `

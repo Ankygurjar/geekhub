@@ -1,28 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { ThemeContext, themes } from './ThemeContext.geekhub.js';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import Styling from '../../Constants/constants.style.geekhub.js';
 
-export default function ThemeContextWrapper(props) {
-    const [theme, setTheme] = useState(themes.dark);
+export default function ChangeAppearance() {
 
-    function changeTheme(theme) {
-        setTheme(theme);
+    const [mode, setMode] = useState(Styling.BACKGROUND_MODE.DARK);
+
+    const changeBackground = (e) => {
+        e.preventDefault();
+        if (document.body.style.backgroundColor == Styling.BACKGROUND_COLOR.BLACK) {
+            document.body.style.backgroundColor = Styling.BACKGROUND_COLOR.WHITE;
+            document.body.style.color = Styling.BACKGROUND_COLOR.BLACK;
+            setMode(Styling.BACKGROUND_MODE.DARK);
+        } else {
+            document.body.style.backgroundColor = Styling.BACKGROUND_COLOR.BLACK;
+            document.body.style.color = Styling.BACKGROUND_COLOR.WHITE;
+            setMode(Styling.BACKGROUND_MODE.DAY);
+        }
+        document.body.style.transition = 'background-color 500ms linear';
     }
 
-    useEffect(() => {
-        switch (theme) {
-            case themes.light:
-                document.body.classList.add('white-content');
-                break;
-            case themes.dark:
-            default:
-                document.body.classList.remove('white-content');
-                break;
-        }
-    }, [theme]);
-
     return (
-        <ThemeContext.Provider value={{ theme: theme, changeTheme: changeTheme }}>
-            {props.children}
-        </ThemeContext.Provider>
+        <div>
+
+            <ChangeAppearanceButton onClick={changeBackground}>
+                {mode}
+            </ChangeAppearanceButton>
+
+        </div>
     );
 }
+
+const ChangeAppearanceButton = styled.button`
+    border: none;
+    background-color: black;
+    color: white;
+    padding: 3px;
+`
